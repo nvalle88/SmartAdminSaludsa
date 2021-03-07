@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 #endregion
 
-namespace SistemaCalidad.Models
+namespace SmartAdminSaludsa.Models
 {
     public class EnableAuthenticatorViewModel
     {

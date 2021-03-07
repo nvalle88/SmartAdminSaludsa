@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 #endregion
 
-namespace SistemaCalidad.Models
+namespace SmartAdminSaludsa.Models
 {
     public class ExternalLoginsViewModel
     {

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SistemaCalidad.Models;
+using SisteSmartAdminSaludsamaCalidad.Models;
 using SmartAdminSaludsa.Models;
 using SmartAdminSaludsa.Services;
 

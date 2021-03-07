@@ -1,4 +1,4 @@
-﻿namespace SistemaCalidad.Models
+﻿namespace SisteSmartAdminSaludsamaCalidad.Models
 {
     public class RemoveLoginViewModel
     {

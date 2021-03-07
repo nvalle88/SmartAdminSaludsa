@@ -1,4 +1,4 @@
-﻿namespace SistemaPedidos.Models.DTO
+﻿namespace SmartAdminSaludsa.Models.DTO
 {
     public class ProductoDto
     {

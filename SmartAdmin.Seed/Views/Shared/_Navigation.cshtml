@@ -20,13 +20,13 @@
                 {
                     <li is-active-route asp-controller="Home">
                         <a href="#" title="Dashboard">
-                            <i class="fa fa-lg fa-fw fa-home">
-                            </i> <span class="menu-item-parent">Beneficios</span>
+                            <i class="fa fa-lg fa-fw fa-address-book">
+                            </i> <span class="menu-item-parent">Prestadores</span>
                         </a>
                         <ul>
                             <li is-active-route asp-controller="Home" asp-action="Index">
-                                <a asp-controller="Home" asp-action="Index" title="Pedidos sin procesar">
-                                    <span class="menu-item-parent">Pedidos sin procesar</span>
+                                <a asp-controller="Prestadores" asp-action="Beneficios" title="Beneficios">
+                                    <span class="menu-item-parent">Beneficios</span>
                                 </a>
                             </li>
                             <li is-active-route asp-controller="Home" asp-action="PedidosHistoricos">

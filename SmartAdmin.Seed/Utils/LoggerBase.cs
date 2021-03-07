@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using log4net;
 using SistemaPedidos.Extensores;
-using SistemaPedidos.Models.DTO;
+using SmartAdminSaludsa.Models.DTO;
 
 namespace SistemaPedidos.Utilidades
 {
