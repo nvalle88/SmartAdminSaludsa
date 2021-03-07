@@ -4,6 +4,7 @@ using log4net;
 using log4net.Config;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using SmartAdminSaludsa;
 using System.IO;
 using System.Reflection;
 

@@ -541,7 +541,7 @@ $.smallBox = function(settings, callback) {
         $("#divSmallBoxes").append(BoxSmall);
         SmallBoxesAnchos = $("#smallbox" + SmallBoxes).height() + 40;
     } else {
-        var SmartExist = $(".SmallBox").size();
+        var SmartExist = 1;
         if (SmartExist == 0) {
             $("#divSmallBoxes").append(BoxSmall);
             SmallBoxesAnchos = $("#smallbox" + SmallBoxes).height() + 40;

@@ -14,13 +14,14 @@ using SmartAdminSaludsa.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using SmartAdminSaludsa.DBcontextPrestadores;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable once ClassNeverInstantiated.Global
 
 #endregion
 
-namespace SmartAdmin.Seed
+namespace SmartAdminSaludsa
 {
     /// <summary>
     /// Defines the startup instance used by the web host.
@@ -40,6 +41,9 @@ namespace SmartAdmin.Seed
         {
 
             var TiempoVidaCookie = Convert.ToDouble(Configuration.GetSection("TiempoVidaCookie").Value);
+
+            services.AddDbContext<PrestadoresContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ConnectionBddPrestadores")));
 
             services.AddDbContext<UserDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

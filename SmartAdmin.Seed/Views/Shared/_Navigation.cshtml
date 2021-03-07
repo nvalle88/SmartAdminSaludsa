@@ -18,13 +18,13 @@
             @{
                 if (User.IsInRole(Perfiles.Administrador))
                 {
-                    <li is-active-route asp-controller="Home">
-                        <a href="#" title="Dashboard">
+                    <li is-active-route asp-controller="Prestadores">
+                        <a href="#" title="Prestadores">
                             <i class="fa fa-lg fa-fw fa-address-book">
                             </i> <span class="menu-item-parent">Prestadores</span>
                         </a>
                         <ul>
-                            <li is-active-route asp-controller="Home" asp-action="Index">
+                            <li is-active-route asp-controller="Prestadores" asp-action="Beneficios">
                                 <a asp-controller="Prestadores" asp-action="Beneficios" title="Beneficios">
                                     <span class="menu-item-parent">Beneficios</span>
                                 </a>
