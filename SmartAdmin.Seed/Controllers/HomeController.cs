@@ -29,7 +29,7 @@ namespace SmartAdminSaludsa.Controllers
         [Authorize(Policy = "Administracion")]
         public IActionResult Index()
         {
-           
+            this.TempData["Mensaje"] = $"{Mensaje.MensajeSatisfactorio}| Bienvenido {User.Identity.Name}";
             return View();
         }
 
