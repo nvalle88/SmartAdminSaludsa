@@ -25,8 +25,9 @@
                         </a>
                         <ul>
                             <li is-active-route asp-controller="Prestadores" asp-action="Beneficios">
-                                <a asp-controller="Prestadores" asp-action="Beneficios" title="Beneficios">
-                                    <span class="menu-item-parent">Beneficios</span>
+                                <a asp-controller="Prestadores"  asp-action="Beneficios" onclick="cargando()" title="Buscar beneficios">
+                                    <i class="fa fa-lg fa-fw fa-search"></i>
+                                    <span class="menu-item-parent">Buscar beneficios</span>
                                 </a>
                             </li>
                             <li is-active-route asp-controller="Home" asp-action="PedidosHistoricos">
@@ -37,48 +38,48 @@
                         </ul>
                     </li>
                     @*<li is-active-route asp-controller="Home">
-                        <a href="#" title="Productos">
-                            <i class="fa fa-lg fa-fw fa-tags"></i> <span class="menu-item-parent">Productos</span>
-                        </a>
+                            <a href="#" title="Productos">
+                                <i class="fa fa-lg fa-fw fa-tags"></i> <span class="menu-item-parent">Productos</span>
+                            </a>
 
-                        <ul>
-                            <li is-active-route asp-controller="Home" asp-action="Productos">
-                                <a asp-controller="Home" onclick="cargando()" asp-action="Productos" title="Productos">
-                                    <i class=""></i> <span>Productos</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li is-active-route asp-controller="Home">
-                        <a href="#" title="informaci&oacute;n">
-                            <i class="fa fa-lg fa-fw fa-bullhorn"></i> <span class="menu-item-parent">Anuncios</span>
-                        </a>
-                        <ul>
-                            <li is-active-route asp-controller="Home" asp-action="Anuncios">
-                                <a asp-controller="Home" onclick="cargando()" asp-action="Anuncios" title="Anuncios">
-                                    <i class=""></i> <span>Anuncios</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li is-active-route asp-controller="Home">
-                        <a href="#" title="informaci&oacute;n">
-                            <i class="fa fa-lg fa-fw fa-line-chart"></i> <span class="menu-item-parent">Reportes</span>
-                        </a>
-                        <ul>
-                            <li is-active-route asp-controller="Home" asp-action="PanelInformacion">
-                                <a asp-controller="Home" onclick="cargando()" asp-action="PanelInformacion" title="Panel de informaci&oacute;n">
-                                    <i class=""></i> <span>Panel de informaci&oacute;n</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>*@
-                    }
+                            <ul>
+                                <li is-active-route asp-controller="Home" asp-action="Productos">
+                                    <a asp-controller="Home" onclick="cargando()" asp-action="Productos" title="Productos">
+                                        <i class=""></i> <span>Productos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li is-active-route asp-controller="Home">
+                            <a href="#" title="informaci&oacute;n">
+                                <i class="fa fa-lg fa-fw fa-bullhorn"></i> <span class="menu-item-parent">Anuncios</span>
+                            </a>
+                            <ul>
+                                <li is-active-route asp-controller="Home" asp-action="Anuncios">
+                                    <a asp-controller="Home" onclick="cargando()" asp-action="Anuncios" title="Anuncios">
+                                        <i class=""></i> <span>Anuncios</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li is-active-route asp-controller="Home">
+                            <a href="#" title="informaci&oacute;n">
+                                <i class="fa fa-lg fa-fw fa-line-chart"></i> <span class="menu-item-parent">Reportes</span>
+                            </a>
+                            <ul>
+                                <li is-active-route asp-controller="Home" asp-action="PanelInformacion">
+                                    <a asp-controller="Home" onclick="cargando()" asp-action="PanelInformacion" title="Panel de informaci&oacute;n">
+                                        <i class=""></i> <span>Panel de informaci&oacute;n</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>*@
                 }
-            </ul>
-        </nav>
-        <span class="minifyme" data-action="minifyMenu">
-            <i class="fa fa-arrow-circle-left hit"></i>
-        </span>
-    </aside>
-    <!-- END NAVIGATION -->
+            }
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+        <i class="fa fa-arrow-circle-left hit"></i>
+    </span>
+</aside>
+<!-- END NAVIGATION -->

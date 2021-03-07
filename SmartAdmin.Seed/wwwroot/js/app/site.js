@@ -32,12 +32,12 @@ function mostrarLoadingPanel(idElemento, texto) {
         effect: 'bounce',
         text: texto,
         bg: 'rgba(255, 255, 255, 0.5)',
-        color: '#eb5c27',
+        color: '#000000',
         fontSize: '15px'
     });
 }
 
-
+ //color: '#eb5c27',
 
 function mostrarNotificacion(titulo, texto) {
     var color = "";

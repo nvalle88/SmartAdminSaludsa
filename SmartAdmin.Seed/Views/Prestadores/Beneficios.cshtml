@@ -2,7 +2,7 @@
 
 
 @section Migas{
-    <li class="active">Pedidos sin procesar</li>
+    <li class="active">Buscar beneficios</li>
 }
 
 <section id="widget-grid" class="">
@@ -12,26 +12,22 @@
             <div id="content" class="well no-padding">
                 <form method="post" novalidate="novalidate" class="smart-form client-form">
                     <header>
-                        <b>Editar producto</b>
+                        <b>Buscar beneficios</b>
                     </header>
                     <fieldset>
-                        <section>
-                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-                        </section>
-
                         <section class="col col-sm-3">
-                            <label class="label">N&uacute;mero de convenio</label>
+                            <label class="label">N&uacute;mero de convenio *</label>
                             <label class="input">
-                                <i class="icon-append fa fa-file-text"></i>
+                                <i class="icon-append fa fa-asterisk"></i>
                                 <input type="number" data-bind="value: filtro.numeroConvenio" placeholder="Número de convenio">
                                 <b class="tooltip tooltip-bottom-right">Ingrese el n&uacute;mero de convenio</b>
                             </label>
                         </section>
 
                         <section class="col col-sm-3">
-                            <label class="label">C&oacute;digo del producto</label>
+                            <label class="label">C&oacute;digo del producto *</label>
                             <label class="input">
-                                <i class="icon-append fa fa-file-text"></i>
+                                <i class="icon-append fa fa-asterisk"></i>
                                 <input data-bind="value: filtro.codigoProducto" placeholder="Código del producto">
                                 <b class="tooltip tooltip-bottom-right">Ingrese el c&oacute;digo del producto</b>
                             </label>
@@ -63,7 +59,7 @@
                         <div id="scrollTablaRetenciones"></div>
 
                         <button id="btn-guardar" class="btn btn-primary"
-                                data-bind="click: buscarBeneficios"
+                                data-bind="click: buscarBeneficiosInicio"
                                 type="submit">
                             <i class="fa fa-search"></i>
                             &nbsp;&nbsp;BUSCAR
@@ -82,55 +78,88 @@
         </div>
     </div>
     <!-- row -->
-    <div class="row">
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="jarviswidget jarviswidget-color-darken " id="wid-id-0" data-widget-deletebutton="false" data-widget-collapsed="false" data-widget-colorbutton="false" data-widget-editbutton="false">
-                <header style="background-color:#eb5c27;border:#eb5c27">
-                    <span class="widget-icon">
-                        <i class="fa fa-table"></i>
-                    </span>
-                    <h2>Lista de pedidos</h2>
+    <div data-bind=" visible: mostrarTablaBeneficios()">
+        <div class="row">
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget jarviswidget-color-darken " id="wid-id-0" data-widget-deletebutton="false" data-widget-collapsed="false" data-widget-colorbutton="false" data-widget-editbutton="false">
+                    <header style="background-color:#eb5c27;border:#eb5c27">
+                        <span class="widget-icon">
+                            <i class="fa fa-table"></i>
+                        </span>
+                        <h2>Lista de beneficios</h2>
 
-                </header>
-                <div>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body no-padding">
+                            <table id="tb" data-page-length="50" class="table table-striped table-bordered table-hover" style="border-color:#eb5c27" width="100%">
+                                <thead>
+                                    <tr>
 
-                    <div class="jarviswidget-editbox">
+                                        <th data-hide="phone" style="text-align:center"> Convenio</th>
+                                        <th data-hide="phone" style="text-align:center"> Producto</th>
+                                        <th data-hide="phone" style="text-align:center">Plan</th>
+                                        <th data-hide="phone" style="text-align:center"> Versi&oacute;n</th>
+                                        <th data-hide="phone" style="text-align:center">Fecha Inicio</th>
+                                        <th data-hide="phone" style="text-align:center"> Fecha Fin</th>
+                                        <th style="text-align:center">¿ Es promoci&oacute;n ?</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="template: { foreach: listaBenefios(), as: 'beneficio' }">
+                                    <tr>
+                                        <td class="text-center" data-bind="text: beneficio.numeroConvenio"></td>
+                                        <td class="text-center" data-bind="text: beneficio.codigoProducto"></td>
+                                        <td class="text-center" data-bind="text: beneficio.codigoPlan"></td>
+                                        <td class="text-center" data-bind="text: beneficio.versionPlan"></td>
+                                        <td class="text-center" data-bind="text: moment(beneficio.fechaInicioVigencia).format('DD/MM/YYYY')"></td>
+                                        <td class="text-center" data-bind="text: moment(beneficio.fechaFinVigencia).format('DD/MM/YYYY')"></td>
+                                        <td class="text-center" data-bind="text: beneficio.esPromocion"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <div class="col col-sm-12">
+                                        <div style="font-size:11px" data-bind="if: pagina() *  registros() >= totalRegistrosBeneficios()">
+                                           <div><b><span data-bind="text:'Mostrando '+  (pagina() *  registros()-9) + ' a ' + totalRegistrosBeneficios() + ' de '  + totalRegistrosBeneficios() + ' registros'"></span></b></div>
+                                        </div>
+                                        <div style="font-size:11px" data-bind="if: pagina() *  registros() <= totalRegistrosBeneficios()">
+                                           <div><b><span data-bind="text:'Mostrando '+  (pagina() *  registros()-9) + ' a ' +  pagina() *  registros()+ ' de '  + totalRegistrosBeneficios() + ' registros' "></span></b></div>
+                                        </div>
+                                        <div style="font-size:11px"><b><span data-bind="text:'Total de páginas: ' + totalPaginas()"></span></b></div>
+                                    </div>
+                                </tfoot>
+                            </table>
+                            <div class="col col-sm-12">
+                                <div class="col col-sm-12">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" data-bind="click: buscarBeneficiosAnterior" href="#">Anterior</a>
+                                        </li>
+                                        <!-- ko template: { foreach: paginacion(), as :'pagina'} -->
+                                        <!-- ko if: pagina.activa==true -->
+                                        <li class="page-item active"><a class="page-link" data-bind="text: pagina.numeroPagina, attr: {id: pagina.numeroPagina}, click: $parent.buscarBeneficiosPaginacion" href="#"></a></li>
+                                        <!-- /ko -->
+                                        <!-- ko if: pagina.activa==false -->
+                                        <li class="page-item"><a class="page-link" data-bind="text: pagina.numeroPagina, attr: {id: pagina.numeroPagina}, click: $parent.buscarBeneficiosPaginacion" href="#"></a></li>
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+                                        <li class="page-item">
+                                            <a class="page-link" data-bind="click: buscarBeneficiosSiguiente" href="#">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- end widget content -->
+
                     </div>
-                    <div class="widget-body no-padding">
-                        <table id="tb" data-page-length="50" class="table table-striped table-bordered table-hover" style="border-color:#eb5c27" width="100%">
-                            <thead>
-                                <tr>
-
-                                    <th data-hide="phone" style="text-align:center"> Convenio</th>
-                                    <th data-hide="phone" style="text-align:center"> Producto</th>
-                                    <th data-hide="phone" style="text-align:center">Plan</th>
-                                    <th data-hide="phone" style="text-align:center"> Versi&oacute;n</th>
-                                    <th data-hide="phone" style="text-align:center">Fecha Inicio</th>
-                                    <th data-hide="phone" style="text-align:center"> Fecha Fin</th>
-                                    <th style="text-align:center">¿ Es promoci&oacute;n ?</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="template: { foreach: listaBenefios(), as: 'beneficio' }">
-                                <tr>
-                                    <td class="text-center" data-bind="text: beneficio.numeroConvenio"></td>
-                                    <td class="text-center" data-bind="text: beneficio.codigoProducto"></td>
-                                    <td class="text-center" data-bind="text: beneficio.codigoPlan"></td>
-                                    <td class="text-center" data-bind="text: beneficio.versionPlan"></td>
-                                    <td class="text-center" data-bind="text: moment(beneficio.fechaInicioVigencia).format('DD/MM/YYYY')"></td>
-                                    <td class="text-center" data-bind="text: moment(beneficio.fechaFinVigencia).format('DD/MM/YYYY')"></td>
-                                    <td class="text-center" data-bind="text: beneficio.esPromocion"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <!-- end widget content -->
+                    <!-- end widget div -->
 
                 </div>
-                <!-- end widget div -->
-
-            </div>
-        </article>
+            </article>
+        </div>
     </div>
 </section>
 
@@ -151,11 +180,19 @@
 
             var self = this;
 
+            self.mostrarTablaBeneficios = ko.observable(false);
+
+            self.pagina = ko.observable(null);
+            self.registros = ko.observable(10);
+            self.paginacion = ko.observableArray(null);
+            self.totalRegistrosBeneficios = ko.observable(0);
+            self.totalPaginas = ko.observable(0);
+
             self.filtro = {
-                numeroConvenio: ko.observable(0),
+                numeroConvenio: ko.observable(""),
                 codigoProducto: ko.observable(""),
                 codigoPlan: ko.observable(""),
-                versionPlan: ko.observable(0),
+                versionPlan: ko.observable(""),
             };
 
 
@@ -167,14 +204,126 @@
 
             self.listaBenefios = ko.observableArray([]);
 
+            self.validarFormularioBuscarBeneficios = function ()
+            {
+               
+                if (self.filtro.numeroConvenio() == "" || self.filtro.codigoProducto() == "") {
+                    var mensaje = "";
+                    if (self.filtro.numeroConvenio() == "") {
+                        mensaje = `${mensaje} El número de convenio es obligatorio.`
+                    }
 
-            self.buscarBeneficios = function () {
+                    if (self.filtro.codigoProducto() == "") {
+                        mensaje = `${mensaje} El código del producto es obligatorio.`
+                    }
+                    mostrarNotificacion("Aviso", mensaje);
+                    return false;
+                }
+                return true;
+            }
+
+            self.obtenerArregloParaPaginado = function () {
+
+                var totalPaginas = self.totalPaginas();
+                var paginaActual = Math.trunc(self.pagina());
+                var arreglo = [];
+                //console.log("totalPaginas: " + totalPaginas);
+                var paginaLimite = 22;
+
+
+                for (var i = 1; i < totalPaginas + 1; i++) {
+                    if (totalPaginas < paginaLimite) {
+                        if (paginaActual == i) {
+                            arreglo.push({
+                                numeroPagina: i, activa: true
+                            });
+                        } else {
+                            arreglo.push({
+                                numeroPagina: i, activa: false
+                            });
+                        }
+                    } else {
+
+                        if (totalPaginas > paginaLimite) {
+
+                            if (paginaActual < paginaLimite) {
+
+
+                                for (var i = 1; i <= paginaLimite; i++) {
+                                    arreglo.push({
+                                        numeroPagina: i, activa: (paginaActual == i) ? true : false
+                                    });
+                                }
+
+                                return arreglo;
+                            }
+                            else {
+
+                                var i = paginaActual - 20;
+
+                                for (var i; i < paginaActual + 2; i++) {
+                                    if (i <= totalPaginas)
+                                        arreglo.push({
+                                            numeroPagina: i, activa: (paginaActual == i) ? true : false
+                                        });
+                                }
+
+                                return arreglo;
+
+                            }
+                        }
+                    }
+                }
+                return arreglo;
+
+            };
+
+
+            self.buscarBeneficiosPaginacion = function (item, event) {
+                var paginaSeleccionada = $(event.target).text();
+                var pagina = parseInt(paginaSeleccionada)
+                if (self.pagina() == pagina) {
+                    return;
+                };
+                self.buscarBeneficios(pagina);
+            }
+
+            self.buscarBeneficiosAnterior = function () {
+                if (self.pagina() == 1) {
+                    return;
+                }
+                self.buscarBeneficios(self.pagina() - 1);
+            }
+
+            self.buscarBeneficiosSiguiente = function () {
+                if (self.pagina() >= self.totalPaginas()) {
+                    return;
+                }
+                self.buscarBeneficios(self.pagina() + 1);
+
+            }
+
+            self.buscarBeneficiosInicio = function () {
+                self.buscarBeneficios(1);
+            }
+
+            self.buscarBeneficios = function (paginaActual) {
 
 
                 mostrarLoadingPanel("content", "");
+
+                var validacion = self.validarFormularioBuscarBeneficios();
+                if (validacion == false) {
+                    $("#content").waitMe("hide");
+                    return
+                }
+
+
                 var myUrl = '@Url.Action("ObtenerBeneficios", "Prestadores")';
                 var url = myUrl +
-                    '?numeroConvenio=' + self.filtro.numeroConvenio() +
+                    '?numeroPagina=' + paginaActual +
+                    '&cantidadRegistros=' + self.registros() +
+                    '&numeroConvenio=' + self.filtro.numeroConvenio() +
                     '&codigoProducto=' + self.filtro.codigoProducto() +
                     '&codigoPlan=' + self.filtro.codigoPlan() +
                     '&versionPlan=' + self.filtro.versionPlan();
@@ -191,32 +340,65 @@
                         if (data.estado == "Error") {
 
                             mostrarNotificacion("Error", data.mensaje);
+                            self.totalRegistrosBeneficios(data.totalRegistros);
                             window.scrollTo(0, 0);
                             self.pagina(0);
+                            self.mostrarTablaBeneficios(false);
                             $("#content").waitMe("hide");
                         }
                         else {
+
+
+
+                            self.totalRegistrosBeneficios(data.totalRegistros);
                             self.listaBenefios(data.resultado);
+
+                            var division = data.totalRegistros % self.registros();
+                            var paginas = 0;
+                            if (division == 0) {
+                                paginas = data.totalRegistros / self.registros()
+                            }
+                            else {
+                                paginas = Math.trunc(data.totalRegistros / self.registros()) + 1;
+                            }
+
+                            self.totalRegistrosBeneficios(data.totalRegistros);
+
+                            self.totalPaginas(paginas);
+                            self.pagina(paginaActual);
+                            self.paginacion([]);
+                            var d = self.obtenerArregloParaPaginado();
+                            self.paginacion(d);
+
+                            if (data.totalRegistros == 0) {
+                                mostrarNotificacion("Información", "No existen registros.");
+                                self.mostrarTablaBeneficios(false);
+                            } else
+                            {
+                                self.mostrarTablaBeneficios(true);
+                            }
+
+
+
                             $([document.documentElement, document.body]).animate({
                                 scrollTop: $("#scrollTabla").offset().top
                             }, 1000);
+
                             $("#content").waitMe("hide");
                         }
                     },
                     error: function (data) {
                         self.listaBenefios([]);
                         window.scrollTo(0, 0);
+                        self.mostrarTablaBeneficios(false);
                         $("#content").waitMe("hide");
                         mostrarNotificacion("Error","No fue posible consultar la información, intente nuevamente. Si el error persiste consulte al administrador del sistema.");
-                       
                     }
-
                 });
-                
             };
         };
 
-            ko.applyBindings(viewModel);
+        ko.applyBindings(viewModel);
 
     </script>
 }

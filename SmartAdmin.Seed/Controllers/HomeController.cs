@@ -39,7 +39,7 @@ namespace SmartAdminSaludsa.Controllers
             try
             {
                 var usuario = HttpContext.Session.GetString("IdEstablecimiento");
-                LoggerBase.WriteLog("Home-PedidosActuales-POST", "Usuario", "IdEstablecimiento", usuario, TypeError.Info);
+             
                 if (string.IsNullOrEmpty(usuario))
                 {
                     sesionExpirada = true;
@@ -53,7 +53,6 @@ namespace SmartAdminSaludsa.Controllers
             }
             catch (Exception ex)
             {
-                LoggerBase.WriteLog("Home-PedidosActuales", "Usuario", "PedidosActuales", ex.Message, TypeError.Error);
                 return Json(new
                 {
                     estado = false,

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using log4net;
-using SistemaPedidos.Extensores;
-using SmartAdminSaludsa.Models.DTO;
+using SmartAdminSaludsa.Extensores;
 
 namespace SistemaPedidos.Utilidades
 {
@@ -16,18 +14,14 @@ namespace SistemaPedidos.Utilidades
         Info,
         Warning,
         Error,
-
     }
 
 
     /// <summary>
     /// 
     /// </summary>
-    public static class LoggerBase
+    public static class Log
     {
-
-
-
         #region Instancias
 
         /// <summary>
@@ -37,39 +31,23 @@ namespace SistemaPedidos.Utilidades
 
         #endregion Instancias
 
-        #region Variables
-
-        #region Uri
-
-        public static string urlBase { get; set; }
-
-        #endregion Uri
-
-        public static List<AccionProceso> ListaAcciones { get; set; }
-        public static string mensajePedidoProcesadoOk { get; internal set; }
-        public static string mensajeNoExisteDetallePedido { get; internal set; }
-        public static string mensajePedidoProcesadoError { get; internal set; }
-        public static string EstadoPendiente { get; set; }
-
-        #endregion Variables
-
         public static string ObtenerIdTransaccion() => Guid.NewGuid().ToString();
 
 
-        public static void WriteLog(string metodo,string id,string url, object content, TypeError typeError, object request=null)
+        public static void WriteLog(string id, TypeError typeError, object log=null,string Proceso="",string usuario="")
         {
             try
             {
                 switch (typeError)
                 {
                     case TypeError.Info:
-                        Logger.Info($"[{metodo}]-[{id}]-[{url}]-[{content.Serializar()}],[{request.Serializar()}]");
+                        Logger.Info($"{id}-{Proceso}-{usuario}-{log.Serializar()}");
                         break;
                     case TypeError.Warning:
-                        Logger.Warn($"[{metodo}]-[{id}]-[{url}]-[{content.Serializar()}],[{request.Serializar()}]");
+                        Logger.Warn($"{id}-{Proceso}-{usuario}-{log.Serializar()}");
                         break;
                     case TypeError.Error:
-                        Logger.Error($"[{metodo}]-[{id}]-[{url}]-[{content.Serializar()}],[{request.Serializar()}]");
+                        Logger.Error($"{id}-{Proceso}-{usuario}-{log.Serializar()}");
                         break;
                 }
             }

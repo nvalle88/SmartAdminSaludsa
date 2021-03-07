@@ -1,9 +1,6 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace SistemaPedidos.Extensores
+namespace SmartAdminSaludsa.Extensores
 {
     public static class ObjectExtension
     {
